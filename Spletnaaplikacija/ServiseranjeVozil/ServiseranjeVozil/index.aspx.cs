@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +14,23 @@ namespace ServiseranjeVozil
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.peter.Style.Add("text-align", "center");
+            if (Session["neki"] == null)
+            {
+                Session["neki"] = "Nakljucno blabla!";
+            }
+            if(Session["neki"] == "Nakljucno blabla!")
+            {
+                this.peter.InnerHtml = "Spremenjeno besedilo!";
+                Session["neki"] = "Spremenjeno besedilo!";
+            }
+            else
+            {
+                Session["neki"] = "Nakljucno blabla!";
+                this.peter.InnerHtml = "Nakljucno blabla";
+            }
 
         }
-    }
+     }
+
 }

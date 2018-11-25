@@ -24,12 +24,8 @@
 
 <article class="article">
 <p align='center'><h3>Pozrdavljeni v aplikaciji servis vozil</h3></p>
+<p align='center' id="peter" runat="server"></p>
 </section>
-        <form id="form1" runat="server">
-    <div>
-    
-    </div>
-    </form>
 </article>
 
 <footer>Avtor: Žan Gostič</footer>
