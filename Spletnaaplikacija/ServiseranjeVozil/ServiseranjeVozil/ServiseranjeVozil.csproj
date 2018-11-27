@@ -199,10 +199,12 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="brisiVozilo.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="dodajVozilo.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -214,6 +216,10 @@
     <None Include="Properties\PublishProfiles\ServiseranjeVozil20180809013812.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="index.aspx" />
+    <Content Include="odjava.aspx" />
+    <Content Include="odstraniPrijavo.aspx" />
+    <Content Include="prijava.aspx" />
+    <Content Include="prijavaNaServis.aspx" />
     <Content Include="Registracija.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -381,6 +387,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Baza.cs" />
+    <Compile Include="brisiVozilo.aspx.cs">
+      <DependentUpon>brisiVozilo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="brisiVozilo.aspx.designer.cs">
+      <DependentUpon>brisiVozilo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -395,6 +409,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="dodajVozilo.aspx.cs">
+      <DependentUpon>dodajVozilo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajVozilo.aspx.designer.cs">
+      <DependentUpon>dodajVozilo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -406,6 +427,34 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="odjava.aspx.cs">
+      <DependentUpon>odjava.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="odjava.aspx.designer.cs">
+      <DependentUpon>odjava.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="odstraniPrijavo.aspx.cs">
+      <DependentUpon>odstraniPrijavo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="odstraniPrijavo.aspx.designer.cs">
+      <DependentUpon>odstraniPrijavo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prijava.aspx.cs">
+      <DependentUpon>prijava.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prijava.aspx.designer.cs">
+      <DependentUpon>prijava.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="prijavaNaServis.aspx.cs">
+      <DependentUpon>prijavaNaServis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="prijavaNaServis.aspx.designer.cs">
+      <DependentUpon>prijavaNaServis.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registracija.aspx.cs">
       <DependentUpon>Registracija.aspx</DependentUpon>

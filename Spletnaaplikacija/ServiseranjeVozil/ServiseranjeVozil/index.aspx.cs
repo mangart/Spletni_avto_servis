@@ -29,6 +29,7 @@ namespace ServiseranjeVozil
                 Session["neki"] = "Nakljucno blabla!";
                 this.peter.InnerHtml = "Nakljucno blabla";
             }
+            this.peter.InnerHtml = Baza.NekaFunkcija();
 
         }
      }

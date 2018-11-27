@@ -1,17 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="ServiseranjeVozil.index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="odjava.aspx.cs" Inherits="ServiseranjeVozil.odjava" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Spletni servis vozil</title>
+    <title>Odjava</title>
     <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <div class="flex-container">
+<div class="flex-container">
 <header>
   <h1>Spletni servis vozil</h1>
 </header>
@@ -30,11 +29,10 @@
 
 <article class="article">
 <p style="text-align:center"><h3>Pozrdavljeni v aplikaciji servis vozil</h3></p>
-<p style="text-align:center" id="peter" runat="server"></p>
+<p style="text-align:center" id="peter" runat="server">Sedaj ste odjavljeni</p>
 </article>
 
 <footer>Avtor: Žan Gostič</footer>
 </div>
-
 </body>
 </html>
