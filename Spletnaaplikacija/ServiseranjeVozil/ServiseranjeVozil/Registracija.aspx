@@ -24,6 +24,10 @@
     <li><a href="odjava.aspx">Odjava</a></li>
     <li><a href="prijavaNaServis.aspx">Prijava na servis</a></li>
     <li><a href="brisiVozilo.aspx">Briši svoja vozila</a></li>
+    <li><a href="odstraniPrijavo.aspx">Odstani prijavo na servis</a></li>
+    <li><a href="pregledServisov.aspx">Pregled odobrenih servisov</a></li>
+    <li><a href="potrdiServis.aspx">Potrdi servis</a></li>
+    <li><a href="opraviServis.aspx">Opravi servise</a></li>
 </ul>
 </nav>
 

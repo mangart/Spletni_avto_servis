@@ -10,7 +10,7 @@
 namespace ServiseranjeVozil {
     
     
-    public partial class brisiVozilo {
+    public partial class potrdiServis {
         
         /// <summary>
         /// peter control.

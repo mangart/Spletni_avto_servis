@@ -43,12 +43,6 @@ namespace ServiseranjeVozil
 
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            string buttonId = button.ID;
-            System.Diagnostics.Debug.WriteLine(buttonId);
-        }
         protected void OnClick(object sender, EventArgs e)
         {
             Button button = (Button)sender;

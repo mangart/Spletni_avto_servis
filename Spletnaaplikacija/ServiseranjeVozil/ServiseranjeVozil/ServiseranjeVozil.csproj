@@ -199,12 +199,21 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="brisiKraj.aspx" />
+    <Content Include="brisiModel.aspx" />
+    <Content Include="brisiPoslovalnice.aspx" />
+    <Content Include="brisiUporabnika.aspx" />
     <Content Include="brisiVozilo.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="dodajanjeModela.aspx" />
+    <Content Include="dodajKraj.aspx" />
+    <Content Include="dodajPoslovalnico.aspx" />
     <Content Include="dodajVozilo.aspx" />
+    <Content Include="dodajZaposlenega.aspx" />
+    <Content Include="dodajZnamko.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -218,6 +227,11 @@
     <Content Include="index.aspx" />
     <Content Include="odjava.aspx" />
     <Content Include="odstraniPrijavo.aspx" />
+    <Content Include="odstraniZnamko.aspx" />
+    <Content Include="opraviServis.aspx" />
+    <Content Include="potrdiServis.aspx" />
+    <Content Include="pregledOpravljenihServisov.aspx" />
+    <Content Include="pregledServisov.aspx" />
     <Content Include="prijava.aspx" />
     <Content Include="prijavaNaServis.aspx" />
     <Content Include="Registracija.aspx" />
@@ -388,6 +402,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Baza.cs" />
+    <Compile Include="brisiKraj.aspx.cs">
+      <DependentUpon>brisiKraj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="brisiKraj.aspx.designer.cs">
+      <DependentUpon>brisiKraj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="brisiModel.aspx.cs">
+      <DependentUpon>brisiModel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="brisiModel.aspx.designer.cs">
+      <DependentUpon>brisiModel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="brisiPoslovalnice.aspx.cs">
+      <DependentUpon>brisiPoslovalnice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="brisiPoslovalnice.aspx.designer.cs">
+      <DependentUpon>brisiPoslovalnice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="brisiUporabnika.aspx.cs">
+      <DependentUpon>brisiUporabnika.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="brisiUporabnika.aspx.designer.cs">
+      <DependentUpon>brisiUporabnika.aspx</DependentUpon>
+    </Compile>
     <Compile Include="brisiVozilo.aspx.cs">
       <DependentUpon>brisiVozilo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -409,12 +451,47 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="dodajanjeModela.aspx.cs">
+      <DependentUpon>dodajanjeModela.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajanjeModela.aspx.designer.cs">
+      <DependentUpon>dodajanjeModela.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dodajKraj.aspx.cs">
+      <DependentUpon>dodajKraj.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajKraj.aspx.designer.cs">
+      <DependentUpon>dodajKraj.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dodajPoslovalnico.aspx.cs">
+      <DependentUpon>dodajPoslovalnico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajPoslovalnico.aspx.designer.cs">
+      <DependentUpon>dodajPoslovalnico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dodajVozilo.aspx.cs">
       <DependentUpon>dodajVozilo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="dodajVozilo.aspx.designer.cs">
       <DependentUpon>dodajVozilo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dodajZaposlenega.aspx.cs">
+      <DependentUpon>dodajZaposlenega.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajZaposlenega.aspx.designer.cs">
+      <DependentUpon>dodajZaposlenega.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dodajZnamko.aspx.cs">
+      <DependentUpon>dodajZnamko.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dodajZnamko.aspx.designer.cs">
+      <DependentUpon>dodajZnamko.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -440,6 +517,41 @@
     </Compile>
     <Compile Include="odstraniPrijavo.aspx.designer.cs">
       <DependentUpon>odstraniPrijavo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="odstraniZnamko.aspx.cs">
+      <DependentUpon>odstraniZnamko.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="odstraniZnamko.aspx.designer.cs">
+      <DependentUpon>odstraniZnamko.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="opraviServis.aspx.cs">
+      <DependentUpon>opraviServis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="opraviServis.aspx.designer.cs">
+      <DependentUpon>opraviServis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="potrdiServis.aspx.cs">
+      <DependentUpon>potrdiServis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="potrdiServis.aspx.designer.cs">
+      <DependentUpon>potrdiServis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pregledOpravljenihServisov.aspx.cs">
+      <DependentUpon>pregledOpravljenihServisov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pregledOpravljenihServisov.aspx.designer.cs">
+      <DependentUpon>pregledOpravljenihServisov.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pregledServisov.aspx.cs">
+      <DependentUpon>pregledServisov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pregledServisov.aspx.designer.cs">
+      <DependentUpon>pregledServisov.aspx</DependentUpon>
     </Compile>
     <Compile Include="prijava.aspx.cs">
       <DependentUpon>prijava.aspx</DependentUpon>

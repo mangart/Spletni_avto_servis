@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="brisiVozilo.aspx.cs" Inherits="ServiseranjeVozil.brisiVozilo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="odstraniZnamko.aspx.cs" Inherits="ServiseranjeVozil.odstraniZnamko" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Brisi vozilo</title>
+    <title>Odstrani znamko</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="style.css" rel="stylesheet" />
@@ -28,16 +28,25 @@
     <li><a href="pregledServisov.aspx">Pregled odobrenih servisov</a></li>
     <li><a href="potrdiServis.aspx">Potrdi servis</a></li>
     <li><a href="opraviServis.aspx">Opravi servise</a></li>
+    <li><a href="dodajZnamko.aspx">Dodaj znamko</a></li>
+    <li><a href="odstraniZnamko.aspx">Odstrani znamko</a></li>
 </ul>
 </nav>
 
 <article class="article">
 <p style="text-align:center"><h3>Pozrdavljeni v aplikaciji servis vozil</h3></p>
-<p style="text-align:center" id="peter" runat="server">Tukaj lahko brišete vaša vozila</p>
+<p style="text-align:center" id="peter" runat="server">Tukaj lahko dodate novo znamko vozila</p>
     <form id="form1" runat="server">
     <div>
-        <asp:Table ID="Table1" runat="server"></asp:Table>
-
+    
+        <asp:Label ID="Label1" runat="server" Text="Izberi znamko"></asp:Label>
+        <asp:DropDownList ID="DropDownList1" runat="server" style="margin-left: 48px">
+        </asp:DropDownList>
+    
+        <br />
+        <asp:Button ID="Button1" runat="server" Text="Odstrani" OnClick="Button1_Click" />
+        <asp:Button ID="Button2" runat="server" Text="Nazaj" OnClick="Button2_Click" style="margin-left: 70px" />
+    
     </div>
     </form>
 </article>

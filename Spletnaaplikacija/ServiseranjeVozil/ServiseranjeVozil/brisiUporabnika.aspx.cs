@@ -7,22 +7,22 @@ using System.Web.UI.WebControls;
 
 namespace ServiseranjeVozil
 {
-    public partial class odstraniPrijavo : System.Web.UI.Page
+    public partial class brisiUporabnika : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["uporabnik"] == null || Session["stanje"] == null)
             {
                 Response.Redirect("index.aspx");
             }
-            else if ((int)Session["stanje"] != 1)
+            else if ((int)Session["stanje"] != 3)
             {
                 Response.Redirect("index.aspx");
             }
-
             int ids = Baza.DobiStranko((int)Session["uporabnik"]);
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
-            dictionary = Baza.DobiNarocila(ids);
+            dictionary = Baza.DobiUporabnike();
             foreach (KeyValuePair<string, int> entry in dictionary)
             {
                 //this.DropDownList2.Items.Insert(0, new ListItem(entry.Key, entry.Value.ToString()));
@@ -45,8 +45,8 @@ namespace ServiseranjeVozil
         {
             Button button = (Button)sender;
             string buttonId = button.ID;
-            int idn = Int32.Parse(button.ID);
-            string bri = Baza.BrisiNarocilo(idn);
+            int idu = Int32.Parse(button.ID);
+            string bri = Baza.BrisiUporabnika(idu);
             if (bri == "")
             {
                 Response.Redirect("index.aspx");
@@ -55,7 +55,6 @@ namespace ServiseranjeVozil
             {
                 this.peter.InnerHtml = bri;
             }
-
         }
     }
 }

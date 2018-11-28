@@ -458,6 +458,716 @@ namespace ServiseranjeVozil
             return "";
         }
 
+        public static Dictionary<string, int> DobiNarocila(int ids)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("select n.id_narocila, p.naziv, z.naziv_znamke, m.naziv_modela, n.dan, n.mesec,n.leto,n.ura,n.minuta, n.opis from narocilo n, poslovalnica p, znamka z, model m, vozilo v where z.id_znamke = v.id_znamke and m.id_modela = v.id_modela and p.id_poslovalnice = n.id_poslovalnice and n.id_vozila = v.id_vozila and n.id_stranke = @ids and n.potrjen != 1", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@ids", ids));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string neki = "";
+                                neki = neki + (string)reader[2] + ", " + reader[3].ToString() + " pri " + reader[1].ToString() + " na datum: " + reader[4].ToString() + ". " + reader[5].ToString() + ". " + reader[6].ToString() + " ob " + reader[7].ToString() + ":" + reader[8].ToString() + " Opis: " + reader[9].ToString();
+                                dictionary.Add(neki, (int)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static string BrisiNarocilo(int idn)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Narocilo WHERE id_narocila = @idn", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idn", idn));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static Dictionary<string, int> DobiOdobrenaNarocila(int ids)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("select n.id_narocila, p.naziv, z.naziv_znamke, m.naziv_modela, n.dan, n.mesec,n.leto,n.ura,n.minuta, n.opis from narocilo n, poslovalnica p, znamka z, model m, vozilo v where z.id_znamke = v.id_znamke and m.id_modela = v.id_modela and p.id_poslovalnice = n.id_poslovalnice and n.id_vozila = v.id_vozila and n.id_stranke = @ids and n.potrjen = 1", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@ids", ids));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string neki = "";
+                                neki = neki + (string)reader[2] + ", " + reader[3].ToString() + " pri " + reader[1].ToString() + " na datum: " + reader[4].ToString() + ". " + reader[5].ToString() + ". " + reader[6].ToString() + " ob " + reader[7].ToString() + ":" + reader[8].ToString() + " Opis: " + reader[9].ToString();
+                                dictionary.Add(neki, (int)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static Dictionary<string, int> DobiNarocilaZaOdobritev(int idp)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("select n.id_narocila, p.naziv, z.naziv_znamke, m.naziv_modela, n.dan, n.mesec,n.leto,n.ura,n.minuta, n.opis from narocilo n, poslovalnica p, znamka z, model m, vozilo v where z.id_znamke = v.id_znamke and m.id_modela = v.id_modela and p.id_poslovalnice = n.id_poslovalnice and n.id_vozila = v.id_vozila and p.id_poslovalnice = @idp and n.potrjen != 1", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idp", idp));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string neki = "";
+                                neki = neki + (string)reader[2] + ", " + reader[3].ToString() + " pri " + reader[1].ToString() + " na datum: " + reader[4].ToString() + ". " + reader[5].ToString() + ". " + reader[6].ToString() + " ob " + reader[7].ToString() + ":" + reader[8].ToString() + " Opis: " + reader[9].ToString();
+                                dictionary.Add(neki, (int)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static int DobiZaposlenega(int idu)
+        {
+            int id = 0;
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Zaposleni where ID_uporabnika = @idu", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idu", idu));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                id = (int)reader[0];
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return -1;
+                }
+                conn.Close();
+            }
+            return id;
+        }
+
+        public static int DobiPoslovalnico(int idu)
+        {
+            int id = 0;
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Zaposleni where ID_uporabnika = @idu", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idu", idu));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                id = (int)reader[3];
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return -1;
+                }
+                conn.Close();
+            }
+            return id;
+        }
+
+        public static string OdobriNarocilo(int idn)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("UPDATE Narocilo SET potrjen = 1 WHERE id_narocila = @idn", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idn", idn));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static Dictionary<string,int> DobiNarocilaOdobrena(int idp)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("select n.id_narocila, p.naziv, z.naziv_znamke, m.naziv_modela, n.dan, n.mesec,n.leto,n.ura,n.minuta, n.opis from narocilo n, poslovalnica p, znamka z, model m, vozilo v where z.id_znamke = v.id_znamke and m.id_modela = v.id_modela and p.id_poslovalnice = n.id_poslovalnice and n.id_vozila = v.id_vozila and p.id_poslovalnice = @idp and n.potrjen = 1", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idp", idp));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string neki = "";
+                                neki = neki + (string)reader[2] + ", " + reader[3].ToString() + " pri " + reader[1].ToString() + " na datum: " + reader[4].ToString() + ". " + reader[5].ToString() + ". " + reader[6].ToString() + " ob " + reader[7].ToString() + ":" + reader[8].ToString() + " Opis: " + reader[9].ToString();
+                                dictionary.Add(neki, (int)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static string OpraviNarocilo(int idn)
+        {
+            int idNarocila = 0;
+            int idPoslovalnice = 0;
+            int idStranke = 0;
+            int idVozila = 0;
+            int idZnamke = 0;
+            int idModela = 0;
+            int ura = 0;
+            int minuta = 0;
+            int leto = 0;
+            int dan = 0;
+            int mesec = 0;
+            int potrjen = 0;
+            string opis = "";
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Narocilo where ID_narocila = @idn", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idn", idn));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                idNarocila = (int)reader[0];
+                                idStranke = (int)reader[1];
+                                idPoslovalnice = (int)reader[2];
+                                idVozila = (int)reader[3];
+                                idZnamke = (int)reader[4];
+                                idModela = (int)reader[5];
+                                ura = (int)reader[6];
+                                minuta = (int)reader[7];
+                                dan = (int)reader[8];
+                                mesec = (int)reader[9];
+                                leto = (int)reader[10];
+                                potrjen = (int)reader[11];
+                                opis = (string)reader[12];
+                                break;
+                            }
+                        }
+                    }
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Opravljena_narocila VALUES(@idn,@ids,@idp,@idv,@idz,@idm,@ura,@min,@dan,@mes,@let,@pot,@opi)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idn", idNarocila));
+                        command.Parameters.Add(new SqlParameter("@ids", idStranke));
+                        command.Parameters.Add(new SqlParameter("@idp", idPoslovalnice));
+                        command.Parameters.Add(new SqlParameter("@idv", idVozila));
+                        command.Parameters.Add(new SqlParameter("@idz", idZnamke));
+                        command.Parameters.Add(new SqlParameter("@idm", idModela));
+                        command.Parameters.Add(new SqlParameter("@ura", ura));
+                        command.Parameters.Add(new SqlParameter("@min", minuta));
+                        command.Parameters.Add(new SqlParameter("@dan", dan));
+                        command.Parameters.Add(new SqlParameter("@mes", mesec));
+                        command.Parameters.Add(new SqlParameter("@let", leto));
+                        command.Parameters.Add(new SqlParameter("@pot", potrjen));
+                        command.Parameters.Add(new SqlParameter("@opi", opis));
+                        command.ExecuteNonQuery();
+                    }
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Narocilo WHERE id_narocila = @idn", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idn", idn));
+                        command.ExecuteNonQuery();
+                    }
+
+
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string VnesiZnamko(string znamka)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Znamka VALUES(@znamka)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@znamka", znamka));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string BrisiZnamko(int idz)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Znamka WHERE id_znamke = @idz", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idz", idz));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string VnesiKraj(string kraj)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Kraj VALUES(@kraj)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@kraj", kraj));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string BrisiKraj(int idk)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Kraj WHERE id_kraja = @idk", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idk", idk));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return  "";
+        }
+
+        public static Dictionary<string, int> DobiKraje()
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Kraj", conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dictionary.Add((string)reader[1], (int)reader[0]);
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static string VnesiModel(int idz, string model)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Model VALUES(@model, @idz)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@model", model));
+                        command.Parameters.Add(new SqlParameter("@idz", idz));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static Dictionary<int, string> DobiModeleBrezZnamke()
+        {
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Model", conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            dictionary.Add((int)reader[0], (string)reader[1]);
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static string BrisiModel(int idm)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM model WHERE id_modela = @idm", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idm", idm));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string DodajPoslovalnico(int idk,string naziv, string naslov)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Poslovalnica VALUES(@naziv, @naslov,@idk)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@naziv", naziv));
+                        command.Parameters.Add(new SqlParameter("@naslov", naslov));
+                        command.Parameters.Add(new SqlParameter("@idk", idk));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static string BrisiPoslovalnico(int idp)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Poslovalnica WHERE id_poslovalnice = @idp", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idp", idp));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static int registrirajZaposlenega(string upoime, string geslo, string ime, string priimek, int idp)
+        {
+            int id_uporabnika = -1;
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    byte[] salt;
+                    new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+                    var pbkdf2 = new Rfc2898DeriveBytes(geslo, salt, 10000);
+                    byte[] hash = pbkdf2.GetBytes(20);
+                    byte[] hashBytes = new byte[36];
+                    Array.Copy(salt, 0, hashBytes, 0, 16);
+                    Array.Copy(hash, 0, hashBytes, 16, 20);
+                    string savedPasswordHash = Convert.ToBase64String(hashBytes);
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Uporabnik VALUES(@uime,@geslo)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@uime", upoime));
+                        command.Parameters.Add(new SqlParameter("@geslo", savedPasswordHash));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    if (er.Message.StartsWith("Violation of UNIQUE KEY constraint"))
+                    {
+                        conn.Close();
+                        return 2;
+                        // handle your violation
+                    }
+                    else
+                    {
+                        conn.Close();
+                        return 1;
+                    }
+                }
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("SELECT * FROM Uporabnik WHERE uporabnisko_ime = @uime", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@uime", upoime));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                id_uporabnika = (int)reader[0];
+                                break;
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+                    conn.Close();
+                    return 4;
+                }
+                try
+                {
+                    using (SqlCommand command = new SqlCommand("INSERT INTO Zaposleni VALUES(@ime,@priimek,@idp,@idupo)", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@ime", ime));
+                        command.Parameters.Add(new SqlParameter("@priimek", priimek));
+                        command.Parameters.Add(new SqlParameter("@idp", idp));
+                        command.Parameters.Add(new SqlParameter("@idupo", id_uporabnika));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    conn.Close();
+                    return 1;
+                }
+                conn.Close();
+            }
+            return 0;
+        }
+
+        public static Dictionary<string, int> DobiUporabnike()
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                conn.Open();
+                using (SqlCommand command = new SqlCommand("SELECT u.id_uporabnika, u.uporabnisko_ime, s.email FROM uporabnik u LEFT JOIN stranka s ON u.id_uporabnika = s.id_uporabnika WHERE u.id_uporabnika > 1", conn))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string neki = "";
+                            if(reader[2].ToString() == "")
+                            {
+                                neki = neki + (string)reader[1] + ", " + "Zaposleni";
+                            }
+                            else
+                            {
+                                neki = neki + (string)reader[1] + ", " + "Stranka";
+                            }
+                            dictionary.Add(neki, (int)reader[0]);
+                        }
+                    }
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+        public static string BrisiUporabnika(int idu)
+        {
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("DELETE FROM Uporabnik WHERE id_uporabnika = @idu", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@idu", idu));
+                        command.ExecuteNonQuery();
+                    }
+                }
+                catch (SqlException er)
+                {
+                    return er.Message;
+                }
+                conn.Close();
+            }
+            return "";
+        }
+
+        public static Dictionary<string, int> DobiOpravljenaNarocila(int ids)
+        {
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = constr;
+                try
+                {
+                    conn.Open();
+                    using (SqlCommand command = new SqlCommand("select n.id_narocila, p.naziv, z.naziv_znamke, m.naziv_modela, n.dan, n.mesec,n.leto,n.ura,n.minuta, n.opis from Opravljena_narocila n, poslovalnica p, znamka z, model m, vozilo v where z.id_znamke = v.id_znamke and m.id_modela = v.id_modela and p.id_poslovalnice = n.id_poslovalnice and n.id_vozila = v.id_vozila and n.id_stranke = @ids and n.potrjen = 1", conn))
+                    {
+                        command.Parameters.Add(new SqlParameter("@ids", ids));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string neki = "";
+                                neki = neki + (string)reader[2] + ", " + reader[3].ToString() + " pri " + reader[1].ToString() + " na datum: " + reader[4].ToString() + ". " + reader[5].ToString() + ". " + reader[6].ToString() + " ob " + reader[7].ToString() + ":" + reader[8].ToString() + " Opis: " + reader[9].ToString();
+                                dictionary.Add(neki, (int)reader[0]);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException er)
+                {
+
+                }
+                conn.Close();
+            }
+            return dictionary;
+        }
+
+
 
     }
 }

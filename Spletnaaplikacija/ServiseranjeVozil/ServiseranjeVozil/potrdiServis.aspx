@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="brisiVozilo.aspx.cs" Inherits="ServiseranjeVozil.brisiVozilo" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="potrdiServis.aspx.cs" Inherits="ServiseranjeVozil.potrdiServis" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Brisi vozilo</title>
+    <title>Potrdi servis</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="style.css" rel="stylesheet" />
@@ -33,11 +33,10 @@
 
 <article class="article">
 <p style="text-align:center"><h3>Pozrdavljeni v aplikaciji servis vozil</h3></p>
-<p style="text-align:center" id="peter" runat="server">Tukaj lahko brišete vaša vozila</p>
+<p style="text-align:center" id="peter" runat="server">Tukaj lahko odobrite še ne odobrene servise</p>
     <form id="form1" runat="server">
     <div>
         <asp:Table ID="Table1" runat="server"></asp:Table>
-
     </div>
     </form>
 </article>
