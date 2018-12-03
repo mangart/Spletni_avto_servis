@@ -18,16 +18,9 @@
 <nav class="nav">
 <ul>
     <li><a href="index.aspx">Začetna stran</a></li>
-    <li><a href="Registracija.aspx">Registracija</a></li>
-    <li><a href="prijava.aspx">Prijava</a></li>
-    <li><a href="dodajVozilo.aspx">Dodajte vozilo</a></li>
-    <li><a href="odjava.aspx">Odjava</a></li>
-    <li><a href="prijavaNaServis.aspx">Prijava na servis</a></li>
-    <li><a href="brisiVozilo.aspx">Briši svoja vozila</a></li>
-    <li><a href="odstraniPrijavo.aspx">Odstani prijavo na servis</a></li>
-    <li><a href="pregledServisov.aspx">Pregled odobrenih servisov</a></li>
     <li><a href="potrdiServis.aspx">Potrdi servis</a></li>
     <li><a href="opraviServis.aspx">Opravi servise</a></li>
+    <li><a href="odjava.aspx">Odjava</a></li>
 </ul>
 </nav>
 

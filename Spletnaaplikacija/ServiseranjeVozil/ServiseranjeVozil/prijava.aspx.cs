@@ -57,7 +57,7 @@ namespace ServiseranjeVozil
                         Session["stanje"] = 1;
                         this.peter.InnerHtml = "Uporabnik je Stranka!";
                     }
-                   // Response.Redirect("index.aspx");
+                    Response.Redirect("index.aspx");
                 }
                 else
                 {

@@ -17,20 +17,17 @@
 
 <nav class="nav">
 <ul>
-    <li><a href="index.aspx">Začetna stran</a></li>
-    <li><a href="Registracija.aspx">Registracija</a></li>
-    <li><a href="prijava.aspx">Prijava</a></li>
-    <li><a href="dodajVozilo.aspx">Dodajte vozilo</a></li>
-    <li><a href="odjava.aspx">Odjava</a></li>
-    <li><a href="prijavaNaServis.aspx">Prijava na servis</a></li>
-    <li><a href="brisiVozilo.aspx">Briši svoja vozila</a></li>
-    <li><a href="odstraniPrijavo.aspx">Odstani prijavo na servis</a></li>
-    <li><a href="pregledServisov.aspx">Pregled odobrenih servisov</a></li>
-    <li><a href="potrdiServis.aspx">Potrdi servis</a></li>
-    <li><a href="opraviServis.aspx">Opravi servise</a></li>
+	<li><a href="index.aspx">Začetna stran</a></li>
     <li><a href="dodajZnamko.aspx">Dodaj znamko</a></li>
     <li><a href="dodajKraj.aspx">Dodaj kraj</a></li>
     <li><a href="dodajanjeModela.aspx">Dodaj model</a></li>
+    <li><a href="brisiModel.aspx">Briši model</a></li>
+    <li><a href="dodajPoslovalnico.aspx">Dodaj novo poslovalnico</a></li>
+    <li><a href="brisiPoslovalnice.aspx">Briši poslovalnico</a></li>
+    <li><a href="dodajZaposlenega.aspx">Dodaj zaposlenega</a></li>
+    <li><a href="brisiUporabnika.aspx">Briši uporabnika</a></li>
+    <li><a href="odjava.aspx">Odjava</a></li>
+
 </ul>
 </nav>
 
