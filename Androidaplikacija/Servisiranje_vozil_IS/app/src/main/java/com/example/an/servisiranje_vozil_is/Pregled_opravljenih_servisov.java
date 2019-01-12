@@ -1,0 +1,143 @@
+package com.example.an.servisiranje_vozil_is;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Toast;
+import android.text.TextUtils;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.Response;
+import com.android.volley.Request;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Pregled_opravljenih_servisov extends Activity {
+    private String uporabnisko_ime;
+    private  String geslo;
+    private  String id_uporabnika;
+    private  String ime;
+    private  String priimek;
+    private  String sekundarni_id;
+    private  String stanje;
+    ScrollView hsv1;
+    LinearLayout layout;
+    RequestQueue requestQueue;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pregled_opravljenih_servisov);
+        Intent intent = getIntent();
+        uporabnisko_ime = intent.getStringExtra("uporabnisko_ime");
+        geslo = intent.getStringExtra("geslo");
+        id_uporabnika = intent.getStringExtra("id_uporabnika");
+        ime = intent.getStringExtra("ime");
+        priimek = intent.getStringExtra("priimek");
+        sekundarni_id = intent.getStringExtra("sekundarni_id");
+        stanje = intent.getStringExtra("stanje");
+        requestQueue = Volley.newRequestQueue(this);
+        hsv1 = (ScrollView) findViewById( R.id.scrollview3 );
+        layout = (LinearLayout) hsv1.findViewById( R.id.hsvLayout3 );
+        layout.removeAllViews();
+        dobi_opravljene_servise();
+    }
+
+    public void iz_pr_op_na_men(android.view.View v){
+        Context context = getApplicationContext();
+        finish();
+        Intent i=new Intent(context,Meni_za_stranke.class);
+        i.putExtra("uporabnisko_ime", uporabnisko_ime);
+        i.putExtra("geslo", geslo);
+        i.putExtra("id_uporabnika", id_uporabnika);
+        i.putExtra("ime", ime);
+        i.putExtra("priimek", priimek);
+        i.putExtra("sekundarni_id", sekundarni_id);
+        i.putExtra("stanje", stanje);
+        context.startActivity(i);
+    }
+
+    public void dobi_opravljene_servise(){
+        String url = "http://serviseranjevozil20180809013812.azurewebsites.net/Service1.svc/Get_opravljena_narocila/" + sekundarni_id;
+        JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        // Check the length of our response (to see if the user has any repos)
+                        if (response.length() > 0) {
+                            // The user does have repos, so let's loop through them all.
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    // For each repo, add a new line to our repo list.
+                                    JSONObject jsonObj = response.getJSONObject(i);
+                                    Button myButton = new Button (getApplicationContext());
+                                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT );
+                                    lp.setMargins( 20, 0, 20, 0 );
+                                    myButton.setLayoutParams(lp);
+                                    myButton.setId(Integer.parseInt(jsonObj.get("id_narocila").toString()));
+                                    myButton.setTextColor( Color.YELLOW );
+                                    myButton.setGravity( Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL );
+                                    myButton.setText( jsonObj.get("znamka").toString() + " " + jsonObj.get("model").toString() + ", " + jsonObj.get("naziv") + ", " + jsonObj.get("kraj") + ", " +
+                                            jsonObj.get("ura") + ":" + jsonObj.get("minuta") + ", " + jsonObj.get("dan") + ". " + jsonObj.get("mesec") + ". " + jsonObj.get("leto") + ", "
+                                            + jsonObj.get("opis"));
+                                    layout.addView(myButton);
+
+                                } catch (JSONException e) {
+                                    // If there is an error then output this to the logs.
+                                    Log.e("Volley", "Invalid JSON Object.");
+                                }
+
+                            }
+
+
+                        } else {
+                            // The user didn't have any repos.
+                        }
+
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // If there a HTTP error then add a note to our repo list.
+                        Log.e("Volley", error.toString());
+                    }
+                }
+        ) {
+
+            //This is for Headers If You Needed
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/json; charset=UTF-8");
+                params.put("Authorization", uporabnisko_ime + ":" + geslo);
+                return params;
+            }
+        };
+        // Add the request we just defined to our request queue.
+        // The request queue will automatically handle the request as soon as it can.
+        requestQueue.add(arrReq);
+    }
+}

@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Testek</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <button onclick="cityClickJQuery()">Klikni</button>
+    <script type="text/javascript">
+    function cityClickJQuery() {
+	var neki = { 'ime': 'Ziga', 'priimek': 'Zaga', 'email': 'lepa.skala@gmail.com', 'telefon': '098567432', 'uporabnisko_ime': 'zigi', 'geslo': 'neki' };
+        $.ajax({
+            url: "http://localhost:4299/Service1.svc/Registracija",
+			method: "post",
+            data: JSON.stringify(neki),
+			dataType: "json",
+			contentType: "application/json",
+            success: function (data) {
+				console.log(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                alert(jqXHR);
+            }
+        });
+    }
+
+    </script>
+    <h1>My First Heading</h1>
+
+    <p>My first paragraph.</p>
+
+</body>
+</html>
+
